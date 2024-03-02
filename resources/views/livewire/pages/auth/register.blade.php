@@ -38,7 +38,10 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <form wire:submit="register">
+    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-end z-10">
+        <a href="{{ route('welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" wire:navigate>Back</a>
+    </div>
+        <form wire:submit="register">
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />

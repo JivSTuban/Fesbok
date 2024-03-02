@@ -48,10 +48,10 @@ new class extends Component {
 }; ?>
 
 
-<div class="mt-5 bg-white shadow-sm rounded-lg divide-y"> 
+<div class="m-5 bg-white shadow-sm rounded-lg divide-y-4"> 
     @foreach ($chirps->take(15) as $chirp)
     
-        <div class=" p-3 flex space-x-2" wire:key="{{ $chirp->id }}">
+        <div class="p-3 flex space-x-2" wire:key="{{ $chirp->id }}">
             <img class="rounded-full h-10 w-10" src="{{ asset('storage/' . $chirp->user->avatar) }}">
             <div class="flex-1">
                 <div class="flex justify-between items-center mt-1 ml-2">
@@ -85,7 +85,7 @@ new class extends Component {
                 @if ($chirp->is($editing)) 
                     <livewire:chirps.edit :chirp="$chirp" :key="$chirp->id" />
                 @else
-                    <p class="pb-1 mb-1 ml-2 mt-2 text-lg text-gray-900">{{ $chirp->message }}</p>
+                    <p class="pb-1 mb-1 pr-5 mt-2 text-lg text-gray-900 text-justify">{{ $chirp->message }}</p>
                 @endif
             </div>
         </div>

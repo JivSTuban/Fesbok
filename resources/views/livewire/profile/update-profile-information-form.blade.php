@@ -1,9 +1,11 @@
 <?php
 
+
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +18,9 @@ new class extends Component
     public string $email = '';
     public $avatar;
     public $tempAvatar;
+ 
+
+    
 
     /**
      * Mount the component.
@@ -33,12 +38,17 @@ new class extends Component
     public function updateProfileInformation(): void
     {
         $user = Auth::user();
+
         
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
             'tempAvatar' => ['image'],
         ]);
+
+        if ($user->avatar) {
+            Storage::delete('public/avatars/' . $user->id . '/' . basename($user->avatar));
+        }
 
         $path = $this->tempAvatar->storeAs('avatars/' . $user->id, $this->tempAvatar->getClientOriginalName(), 'public');
         

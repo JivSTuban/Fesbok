@@ -16,7 +16,7 @@ use App\Http\Controllers\ChirpController;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('welcome');
 
 Route::get('chirps', [ChirpController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -37,7 +37,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
-    return redirect('/home');
+    return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
  
