@@ -26,7 +26,7 @@
 
                 <div class="flex-wrap justify-center mt-6 px-0 sm:items-center sm:justify-between">
                     <div class="text-center text-sm sm:text-start">
-                        <livewire:chirps.list>
+                        <livewire:chirps.listChirp>
                     </div>
                 </div>                
             </div>

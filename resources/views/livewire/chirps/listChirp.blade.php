@@ -20,7 +20,7 @@ new class extends Component {
         $this->chirps = Chirp::with('user')
             ->latest()
             ->get();
-    } 
+    }
 
      public function edit(Chirp $chirp): void
     {
